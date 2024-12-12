@@ -7,7 +7,7 @@ const AllBooks = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/v1/get-all-books");
+        const response = await fetch("https://book-charm-backend.onrender.com/api/v1/get-all-books");
         const result = await response.json();
         console.log(result.data);
         setData(result.data);

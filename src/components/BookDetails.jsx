@@ -8,7 +8,7 @@ const BookDetails = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/get-book-by-id/${id}`);
+        const response = await fetch(`https://book-charm-backend.onrender.com/api/v1/get-book-by-id/${id}`);
         const result = await response.json();
         setData(result.data);
       } catch (error) {
