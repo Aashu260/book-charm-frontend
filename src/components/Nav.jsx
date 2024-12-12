@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import { book1 } from "../assets";
+import { useState } from "react";
 
 function Nav() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
   return (
     <div>
       <nav className="bg-amber-100 dark:bg-amber-100 w-full z-20 top-0 start-0 border-b-2 border-amber-700">
@@ -33,11 +38,11 @@ function Nav() {
               </button>
             </Link>
             <button
-              data-collapse-toggle="navbar-sticky"
+              onClick={toggleMenu}
               type="button"
               className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-amber-200 focus:outline-none focus:ring-2 focus:bg-amber-200 dark:bg-amber-200 dark:hover:bg-amber-200 dark:focus:ring-gray-600"
               aria-controls="navbar-sticky"
-              aria-expanded="false"
+              aria-expanded={menuOpen}
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -58,7 +63,9 @@ function Nav() {
             </button>
           </div>
           <div
-            className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+            className={`${
+              menuOpen ? "block" : "hidden"
+            } items-center justify-between w-full md:flex md:w-auto md:order-1`}
             id="navbar-sticky"
           >
             <ul className="flex flex-cols p-4 md:p-0 mt-4 font-semibold md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
