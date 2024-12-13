@@ -22,7 +22,7 @@ const AllBooks = () => {
 
   return (
     <div className="bg-amber-100 h-auto px-12 py-16">
-      <h4 className="text-3xl text-amber-950 text-center mb-16">
+      <h4 className="text-3xl font-bold text-amber-950 text-center mb-16">
         Discover the Joy of Reading
       </h4>
       <div className="my-4 grid gap-8 mx-auto grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
