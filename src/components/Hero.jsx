@@ -12,7 +12,7 @@ function Hero() {
             </h1>
             <p className="max-w-2xl mb-6 font-medium text-amber-900 lg:mb-8 md:text-lg lg:text-xl ">
               Welcome to BookCharm, your go-to destination for discovering and
-              owning captivating Books that inspire, entertain, and enlighten.
+              owning captivating eBooks that inspire, entertain, and enlighten.
             </p>
             <Link
               to="/all-books"
