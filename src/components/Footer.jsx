@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { book1 } from "../assets";
 
 function Footer() {
@@ -8,66 +9,34 @@ function Footer() {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <div className="mb-6 md:mb-0 flex items-center space-x-3">
-                <img src={book1} className="h-8 me-3" alt="FlowBite Logo" />
+                <img src={book1} className="h-8 me-3" alt="Logo" />
                 <span className="self-center text-2xl font-semibold whitespace-nowrap text-bg-amber-950">
                   Book Charm
                 </span>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-2">
+            <div className="grid grid-cols-3 gap-8 sm:gap-6 sm:grid-cols-3">
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-bg-amber-950 uppercase ">
-                  About Us
-                </h2>
-                {/* <p>
-                BookCharm is your go-to online bookstore, offering a wide range of captivating Books that inspire, entertain, and enlighten. Discover your next great read with us!
-                </p> */}
-                {/* <ul className="text-bg-amber-950 font-medium">
-                  <li className="mb-4">
-                    <a href="https://flowbite.com/" className="hover:underline">
-                      Flowbite
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://tailwindcss.com/"
-                      className="hover:underline"
-                    >
-                      Tailwind CSS
-                    </a>
-                  </li>
-                </ul> */}
+                <Link to="/">
+                  <h2 className="mb-6 text-sm font-semibold text-bg-amber-950 uppercase hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent">
+                    Home
+                  </h2>
+                </Link>
               </div>
               <div>
-                <h2 className="mb-6 text-sm font-semibold text-bg-amber-950 uppercase">
-                  Quick Links
-                </h2>
-                <ul className="text-bg-amber-950 font-medium">
-                  <li className="mb-4">
-                    <a href="" className="hover:underline "></a>
-                  </li>
-                  <li>
-                    <a href="" className="hover:underline"></a>
-                  </li>
-                </ul>
+                <Link to="/about">
+                  <h2 className="mb-6 text-sm font-semibold text-bg-amber-950 uppercase hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent">
+                    About Us
+                  </h2>
+                </Link>
               </div>
-              {/* <div>
-                <h2 className="mb-6 text-sm font-semibold text-bg-amber-950 uppercase dark:text-white">
-                  Legal
-                </h2>
-                <ul className="text-bg-amber-950 dark:text-bg-amber-950 font-medium">
-                  <li className="mb-4">
-                    <a href="#" className="hover:underline">
-                      Privacy Policy
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" className="hover:underline">
-                      Terms &amp; Conditions
-                    </a>
-                  </li>
-                </ul>
-              </div> */}
+              <div>
+                <Link to="/all-books">
+                  <h2 className="mb-6 text-sm font-semibold text-bg-amber-950 uppercase hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent">
+                    All Books
+                  </h2>
+                </Link>
+              </div>
             </div>
           </div>
           <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
