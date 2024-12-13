@@ -7,16 +7,19 @@ function Nav() {
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+  const closeMenu = () => {
+    setMenuOpen(false);
+  };
   return (
     <div>
-      <nav className="bg-amber-100 dark:bg-amber-100 w-full z-20 top-0 start-0 border-b-2 border-amber-700">
+      <nav className="bg-amber-100 w-full z-20 top-0 start-0 border-b-2 border-amber-700">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <Link
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img src={book1} className="h-8" alt="Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-bg-amber-950 dark:text-white">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-bg-amber-950 ">
               Book Charm
             </span>
           </Link>
@@ -40,7 +43,7 @@ function Nav() {
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-amber-200 focus:outline-none focus:ring-2 focus:bg-amber-200 dark:bg-amber-200 dark:hover:bg-amber-200 dark:focus:ring-gray-600"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-amber-950 hover:text-white hover:scale-110 transition-transform"
               aria-controls="navbar-sticky"
               aria-expanded={menuOpen}
             >
@@ -64,15 +67,16 @@ function Nav() {
           </div>
           <div
             className={`${
-              menuOpen ? "block" : "hidden" 
-            } items-center justify-between w-full md:flex md:w-auto md:order-1`}
+              menuOpen ? "block" : "hidden"
+            } w-full mt-4 md:mt-0 md:flex md:items-center md:w-auto`}
             id="navbar-sticky"
           >
-            <ul className="flex flex-cols p-4 md:p-0 mt-4 font-semibold md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0">
+            <ul className="flex flex-col md:flex-row md:space-x-8 rtl:space-x-reverse p-4 md:p-0 font-semibold bg-amber-100 md:bg-transparent rounded-lg md:rounded-none shadow-md md:shadow-none">
               <li>
                 <Link
                   to="/"
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent  md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  onClick={closeMenu}
+                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent  md:p-0"
                   aria-current="page"
                 >
                   Home
@@ -81,7 +85,8 @@ function Nav() {
               <li>
                 <Link
                   to="/about"
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  onClick={closeMenu}
+                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
                 >
                   About Us
                 </Link>
@@ -89,7 +94,8 @@ function Nav() {
               <li>
                 <Link
                   to="/all-books"
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  onClick={closeMenu}
+                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
                 >
                   All Books
                 </Link>
@@ -97,7 +103,8 @@ function Nav() {
               <li>
                 <Link
                   to="/cart"
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                  onClick={closeMenu}
+                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
                 >
                   Cart
                 </Link>
