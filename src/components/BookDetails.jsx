@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
+// import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
@@ -35,32 +35,32 @@ const BookDetails = () => {
     bookid: id,
   };
 
-  const submitFavourite = async () => {
-    try {
-      const response = await fetch(
-        "https://book-charm-backend.onrender.com/api/v1/add-book-to-fav",
-        {
-          method: "PUT",
-          headers: {
-            ...headers,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({}),
-        }
-      );
+  // const submitFavourite = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://book-charm-backend.onrender.com/api/v1/add-book-to-fav",
+  //       {
+  //         method: "PUT",
+  //         headers: {
+  //           ...headers,
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({}),
+  //       }
+  //     );
 
-      if (response.ok) {
-        const data = await response.json();
-        alert(data.message);
-      } else {
-        const errorData = await response.json();
-        alert(errorData.message || "Failed to add to favorites.");
-      }
-    } catch (error) {
-      console.error("Error adding to favorites:", error);
-      alert("An error occurred while adding to favorites.");
-    }
-  };
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       alert(data.message);
+  //     } else {
+  //       const errorData = await response.json();
+  //       alert(errorData.message || "Failed to add to favorites.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error adding to favorites:", error);
+  //     alert("An error occurred while adding to favorites.");
+  //   }
+  // };
 
   const submitCart = async () => {
     try {
@@ -113,12 +113,12 @@ const BookDetails = () => {
               {/* User Icons */}
               {isLoggedIn === true && role === "user" && (
                 <div className="flex items-center gap-4">
-                  <button
+                  {/* <button
                     className="text-amber-950 hover:text-green-600 hover:scale-110 transition-transform ml-10"
                     onClick={submitFavourite}
                   >
                     <FaHeart size={25} />
-                  </button>
+                  </button> */}
                   <button
                     className="text-amber-950 hover:text-green-600 hover:scale-110 transition-transform"
                     onClick={submitCart}
