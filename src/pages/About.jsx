@@ -10,6 +10,7 @@ function About() {
       </h1>
 
       <div className="max-w-screen-xl mx-auto px-4 py-8">
+        {/* Welcome Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-10 text-center">
             Welcome to Book Charm
@@ -29,6 +30,7 @@ function About() {
           </div>
         </section>
 
+        {/* Mission Section */}
         <section className="mb-16">
           <h2 className="text-3xl font-bold mb-10 text-center">Our Mission</h2>
           <p className="text-lg mb-8 text-center">
@@ -46,6 +48,7 @@ function About() {
           </div>
         </section>
 
+        {/* Stay Connected */}
         <section className="text-center">
           <h2 className="text-3xl font-bold mb-10">Stay Connected</h2>
           <p className="text-lg mb-4">

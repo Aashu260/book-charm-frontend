@@ -1,15 +1,40 @@
 import { Link } from "react-router-dom";
 import { book1 } from "../assets";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
   const closeMenu = () => {
     setMenuOpen(false);
   };
+
+  const links = [
+    {
+      title: "Home",
+      link: "/",
+    },
+    {
+      title: "About Us",
+      link: "/about",
+    },
+    {
+      title: "All books",
+      link: "/all-books",
+    },
+  ];
+
+  if (isLoggedIn) {
+    links.push({
+      title: "Cart",
+      link: "/cart",
+    });
+  }
+
   return (
     <div>
       <nav className="bg-amber-100 w-full z-20 top-0 start-0 border-b-2 border-amber-700">
@@ -72,43 +97,17 @@ function Nav() {
             id="navbar-sticky"
           >
             <ul className="flex flex-col md:flex-row md:space-x-8 rtl:space-x-reverse p-4 md:p-0 font-semibold bg-amber-100 md:bg-transparent rounded-lg md:rounded-none shadow-md md:shadow-none">
-              <li>
-                <Link
-                  to="/"
-                  onClick={closeMenu}
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent  md:p-0"
-                  aria-current="page"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/about"
-                  onClick={closeMenu}
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/all-books"
-                  onClick={closeMenu}
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
-                >
-                  All Books
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/cart"
-                  onClick={closeMenu}
-                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
-                >
-                  Cart
-                </Link>
-              </li>
+              {links.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.link}
+                    onClick={closeMenu}
+                    className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform md:hover:bg-transparent md:p-0"
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
