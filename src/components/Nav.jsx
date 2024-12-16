@@ -39,36 +39,23 @@ function Nav() {
     <div>
       <nav className="bg-amber-100 w-full z-20 top-0 start-0 border-b-2 border-amber-700">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+          {/* Logo Section */}
           <Link
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
             <img src={book1} className="h-8" alt="Logo" />
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-bg-amber-950 ">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-bg-amber-950">
               Book Charm
             </span>
           </Link>
-          <div className="flex md:order-2 space-x-3 md:space-x-6 rtl:space-x-reverse">
-            <Link to="/login">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform focus:ring-2 focus:ring-gray-200"
-              >
-                Log In
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform focus:ring-2 focus:ring-gray-200"
-              >
-                Sign Up
-              </button>
-            </Link>
+
+          {/* Hamburger Menu Button */}
+          <div className="flex ml-auto md:hidden">
             <button
               onClick={toggleMenu}
               type="button"
-              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-amber-950 hover:text-white hover:scale-110 transition-transform"
+              className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg hover:bg-amber-950 hover:text-white hover:scale-110 transition-transform"
               aria-controls="navbar-sticky"
               aria-expanded={menuOpen}
             >
@@ -90,6 +77,28 @@ function Nav() {
               </svg>
             </button>
           </div>
+
+          {/* Log In and Sign Up Buttons for Larger Screens */}
+          <div className="hidden md:flex space-x-3">
+            <Link to="/login">
+              <button
+                type="button"
+                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform"
+              >
+                Log In
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button
+                type="button"
+                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform"
+              >
+                Sign Up
+              </button>
+            </Link>
+          </div>
+
+          {/* Collapsible Menu */}
           <div
             className={`${
               menuOpen ? "block" : "hidden"
@@ -97,6 +106,7 @@ function Nav() {
             id="navbar-sticky"
           >
             <ul className="flex flex-col md:flex-row md:space-x-8 rtl:space-x-reverse p-4 md:p-0 font-semibold bg-amber-100 md:bg-transparent rounded-lg md:rounded-none shadow-md md:shadow-none">
+              {/* Navigation Links */}
               {links.map((link, index) => (
                 <li key={index}>
                   <Link
@@ -108,6 +118,26 @@ function Nav() {
                   </Link>
                 </li>
               ))}
+
+              {/* Log In and Sign Up Links for Mobile */}
+              <li className="md:hidden">
+                <Link
+                  to="/login"
+                  onClick={closeMenu}
+                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform"
+                >
+                  Log In
+                </Link>
+              </li>
+              <li className="md:hidden">
+                <Link
+                  to="/signup"
+                  onClick={closeMenu}
+                  className="block py-2 px-3 text-bg-amber-950 rounded hover:bg-gray-100 hover:scale-110 transition-transform"
+                >
+                  Sign Up
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
