@@ -39,7 +39,6 @@ function Nav() {
     <div>
       <nav className="bg-amber-100 w-full z-20 top-0 start-0 border-b-2 border-amber-700">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          {/* Logo Section */}
           <Link
             to="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
@@ -50,7 +49,6 @@ function Nav() {
             </span>
           </Link>
 
-          {/* Hamburger Menu Button */}
           <div className="flex ml-auto md:hidden">
             <button
               onClick={toggleMenu}
@@ -78,35 +76,13 @@ function Nav() {
             </button>
           </div>
 
-          {/* Log In and Sign Up Buttons for Larger Screens */}
-          <div className="hidden md:flex space-x-3">
-            <Link to="/login">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform"
-              >
-                Log In
-              </button>
-            </Link>
-            <Link to="/signup">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform"
-              >
-                Sign Up
-              </button>
-            </Link>
-          </div>
-
-          {/* Collapsible Menu */}
           <div
             className={`${
               menuOpen ? "block" : "hidden"
             } w-full mt-4 md:mt-0 md:flex md:items-center md:w-auto`}
             id="navbar-sticky"
           >
-            <ul className="flex flex-col md:flex-row md:space-x-8 rtl:space-x-reverse p-4 md:p-0 font-semibold bg-amber-100 md:bg-transparent rounded-lg md:rounded-none shadow-md md:shadow-none">
-              {/* Navigation Links */}
+            <ul className="flex flex-col md:flex-row items-center md:space-x-8 rtl:space-x-reverse p-4 md:p-0 font-semibold bg-amber-100 md:bg-transparent rounded-lg md:rounded-none shadow-md md:shadow-none">
               {links.map((link, index) => (
                 <li key={index}>
                   <Link
@@ -119,7 +95,25 @@ function Nav() {
                 </li>
               ))}
 
-              {/* Log In and Sign Up Links for Mobile */}
+              <div className="hidden md:flex space-x-3">
+                <Link to="/login">
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform"
+                  >
+                    Log In
+                  </button>
+                </Link>
+                <Link to="/signup">
+                  <button
+                    type="button"
+                    className="inline-flex items-center justify-center px-5 py-2 text-base font-medium text-amber-950 bg-amber-100 shadow shadow-amber-950 rounded-3xl text-center hover:text-white hover:bg-amber-950 hover:scale-110 transition-transform"
+                  >
+                    Sign Up
+                  </button>
+                </Link>
+              </div>
+
               <li className="md:hidden">
                 <Link
                   to="/login"

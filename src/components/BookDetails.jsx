@@ -97,7 +97,7 @@ const BookDetails = () => {
             <img
               src={Data.url}
               alt={Data.title || "Book cover"}
-              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto rounded shadow shadow-black/50"
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl h-auto rounded shadow shadow-black/50"
             />
           </div>
           <div className="p-4 w-full lg:w-3/6">
