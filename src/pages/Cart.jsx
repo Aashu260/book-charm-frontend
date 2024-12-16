@@ -6,7 +6,7 @@ import { IoIosArrowDropdownCircle } from "react-icons/io";
 const Cart = () => {
   const [Cart, setCart] = useState([]);
   const [Total, setTotal] = useState(0);
-  const [Quantities, setQuantities] = useState({}); 
+  const [Quantities, setQuantities] = useState({});
 
   const headers = {
     id: localStorage.getItem("id"),
@@ -46,7 +46,6 @@ const Cart = () => {
     fetchCart();
   }, []);
 
-
   const increaseQuantity = (bookid) => {
     setQuantities((prev) => ({
       ...prev,
@@ -54,11 +53,10 @@ const Cart = () => {
     }));
   };
 
-
   const decreaseQuantity = (bookid) => {
     setQuantities((prev) => ({
       ...prev,
-      [bookid]: Math.max((prev[bookid] || 1) - 1, 1), 
+      [bookid]: Math.max((prev[bookid] || 1) - 1, 1),
     }));
   };
 
@@ -83,7 +81,6 @@ const Cart = () => {
     }
   };
 
-
   useEffect(() => {
     if (Cart.length > 0) {
       let total = 0;
@@ -96,11 +93,13 @@ const Cart = () => {
 
   return (
     <div className="bg-amber-100 px-4 md:px-12 min-h-screen py-8 flex flex-col items-center">
-      {!Cart && <p className="text-center text-2xl text-amber-950">Loading...</p>}
+      {!Cart && (
+        <p className="text-center text-2xl text-amber-950">Loading...</p>
+      )}
       {Cart && Cart.length === 0 && (
         <div className="flex-grow flex items-center justify-center flex-col">
-          <h1 className="text-5xl lg:text-4xl font-semibold text-amber-950">
-            You have no items in your cart
+          <h1 className="sm:text-5xl lg:text-4xl font-semibold text-amber-950">
+            Your cart is empty
           </h1>
         </div>
       )}
@@ -131,12 +130,10 @@ const Cart = () => {
                 </div>
 
                 <div className="flex flex-row items-center justify-between gap-2 md:gap-4">
-                 
                   <h2 className="text-2xl font-semibold text-amber-950">
                     ${(items.price * (Quantities[items._id] || 1)).toFixed(2)}
                   </h2>
-                  
-             
+
                   <button
                     className="text-green-600 hover:text-black hover:scale-110 transition-transform"
                     onClick={() => decreaseQuantity(items._id)}
@@ -144,7 +141,6 @@ const Cart = () => {
                     <IoIosArrowDropdownCircle size={30} />
                   </button>
 
-                 
                   <button
                     className="text-green-600 hover:text-black hover:scale-110 transition-transform"
                     onClick={() => increaseQuantity(items._id)}
@@ -152,7 +148,6 @@ const Cart = () => {
                     <IoIosArrowDropupCircle size={30} />
                   </button>
 
-                 
                   <button
                     className="bg-red-100 text-red-700 border border-red-700 rounded p-1 hover:bg-red-700 hover:text-white hover:scale-110 transition-transform"
                     onClick={() => deleteItem(items._id)}
@@ -169,8 +164,10 @@ const Cart = () => {
       {Cart && Cart.length > 0 && (
         <div className="mt-8 mx-auto w-full max-w-sm bg-neutral-50 rounded-lg shadow-md p-6">
           <div className="flex justify-center mb-5 text-lg md:text-xl text-amber-950">
-           
-            <h2>Order Quantity : {Object.values(Quantities).reduce((a, b) => a + b, 0)}</h2>
+            <h2>
+              Order Quantity :{" "}
+              {Object.values(Quantities).reduce((a, b) => a + b, 0)}
+            </h2>
           </div>
           <div className="flex justify-center text-lg md:text-xl text-amber-950">
             <h2>Order Total : ${Total.toFixed(2)}</h2>
