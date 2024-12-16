@@ -64,14 +64,17 @@ const BookDetails = () => {
 
   const submitCart = async () => {
     try {
-      const response = await fetch("https://book-charm-backend.onrender.com/api/v1/add-to-cart", {
-        method: "PUT",
-        headers: {
-          ...headers,
-          "Content-Type": "application/json", 
-        },
-        body: JSON.stringify({}), 
-      });
+      const response = await fetch(
+        "https://book-charm-backend.onrender.com/api/v1/add-to-cart",
+        {
+          method: "PUT",
+          headers: {
+            ...headers,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
 
       if (response.ok) {
         const data = await response.json();
@@ -90,11 +93,11 @@ const BookDetails = () => {
     <>
       {Data ? (
         <div className="px-8 md:px-12 py-20 bg-amber-100 flex flex-col md:flex-row gap-8">
-          <div className="bg-amber-100 rounded p-4 h-[70vh] lg-h-[88vh] w-full lg:w-3/6 flex flex-col items-center justify-center gap-8">
+          <div className="bg-amber-100 rounded p-4 w-full lg:w-3/6 flex flex-col items-center justify-center gap-8">
             <img
               src={Data.url}
               alt={Data.title || "Book cover"}
-              className="h-[70vh] lg-h-[88vh] rounded shadow shadow-black/50 flex items-center justify-center"
+              className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg h-auto rounded shadow shadow-black/50"
             />
           </div>
           <div className="p-4 w-full lg:w-3/6">
