@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Card from "./Card";
+
 const RecentlyAdded = () => {
   const [Data, setData] = useState([]);
 
   useEffect(() => {
-    const fetch = async () => {
-      const response = await axios.get(
-        "https://book-charm-backend.onrender.com/api/v1/get-recent-books"
-      );
-      setData(response.data.data);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://book-charm-backend.onrender.com/api/v1/get-recent-books"
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+
+        const result = await response.json();
+        setData(result.data);
+      } catch (error) {
+        console.error("Error fetching recently added books:", error.message);
+      }
     };
-    fetch();
+
+    fetchData();
   }, []);
 
   return (
@@ -23,7 +34,7 @@ const RecentlyAdded = () => {
         {Data &&
           Data.map((items, i) => (
             <div key={i}>
-              <Card data={items} />{" "}
+              <Card data={items} />
             </div>
           ))}
       </div>
