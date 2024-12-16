@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-// import { FaHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { MdModeEdit } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
@@ -9,10 +9,9 @@ import { useSelector } from "react-redux";
 const BookDetails = () => {
   const { id } = useParams();
   const [Data, setData] = useState(null);
+  const [message, setMessage] = useState("");
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const role = useSelector((state) => state.auth.role);
-  console.log(isLoggedIn);
-  console.log(role);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,33 +34,6 @@ const BookDetails = () => {
     bookid: id,
   };
 
-  // const submitFavourite = async () => {
-  //   try {
-  //     const response = await fetch(
-  //       "https://book-charm-backend.onrender.com/api/v1/add-book-to-fav",
-  //       {
-  //         method: "PUT",
-  //         headers: {
-  //           ...headers,
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify({}),
-  //       }
-  //     );
-
-  //     if (response.ok) {
-  //       const data = await response.json();
-  //       alert(data.message);
-  //     } else {
-  //       const errorData = await response.json();
-  //       alert(errorData.message || "Failed to add to favorites.");
-  //     }
-  //   } catch (error) {
-  //     console.error("Error adding to favorites:", error);
-  //     alert("An error occurred while adding to favorites.");
-  //   }
-  // };
-
   const submitCart = async () => {
     try {
       const response = await fetch(
@@ -78,15 +50,21 @@ const BookDetails = () => {
 
       if (response.ok) {
         const data = await response.json();
-        alert(data.message);
+        setMessage("Added to cart");
       } else {
         const errorData = await response.json();
-        alert(errorData.message || "Failed to add to cart.");
+        if (errorData.message === "Book is already in cart") {
+          setMessage("Book is already in cart");
+        } else {
+          setMessage("Failed to add book to cart");
+        }
       }
     } catch (error) {
       console.error("Error adding to cart:", error);
-      alert("An error occurred while adding to cart.");
+      setMessage("An error occurred while adding to cart.");
     }
+
+    setTimeout(() => setMessage(""), 3000);
   };
 
   return (
@@ -107,31 +85,24 @@ const BookDetails = () => {
             <p className="text-amber-950 mt-4">by {Data.author}</p>
             <p className="text-amber-950 mt-8 text-xl">{Data.desc}</p>
 
-            {/* Price and Icons Row */}
-            <div className="mt-10 flex items-center gap-4">
+            <div className="mt-10 flex items-center gap-4 relative">
               <p className="text-amber-950 text-3xl font-semibold">
                 ${Data.price}
               </p>
 
-              {/* User Icons */}
               {isLoggedIn === true && role === "user" && (
-                <div className="flex items-center gap-4">
-                  {/* <button
-                    className="text-amber-950 hover:text-green-600 hover:scale-110 transition-transform ml-10"
-                    onClick={submitFavourite}
-                  >
-                    <FaHeart size={25} />
-                  </button> */}
+                <div className="flex items-center gap-2">
                   <button
                     className="text-amber-950 hover:text-green-600 hover:scale-110 transition-transform"
                     onClick={submitCart}
                   >
                     <FaShoppingCart size={25} />
                   </button>
+
+                  <span className="text-sm text-green-700">{message}</span>
                 </div>
               )}
 
-              {/* Admin Icons */}
               {isLoggedIn === true && role === "admin" && (
                 <div className="flex items-center gap-4">
                   <button className="text-amber-950 hover:text-green-600 hover:scale-110 transition-transform ml-10">
