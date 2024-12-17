@@ -9,20 +9,19 @@ const LogIn = () => {
     password: "",
   });
 
-  const [errors, setErrors] = useState({}); // State to handle form errors
+  const [errors, setErrors] = useState({}); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const change = (e) => {
     const { name, value } = e.target;
     setValues({ ...Values, [name]: value });
-    setErrors({ ...errors, [name]: "" }); // Clear error when user starts typing
+    setErrors({ ...errors, [name]: "" }); 
   };
 
   const submit = async () => {
     const newErrors = {};
 
-    // Validation
     if (Values.username.trim() === "") {
       newErrors.username = "Username is required";
     }
@@ -30,14 +29,14 @@ const LogIn = () => {
       newErrors.password = "Password is required";
     }
 
-    // If errors exist, update state and stop submission
+   
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
     try {
-      const response = await fetch("https://book-charm-backend.onrender.com/api/v1/log-in", {
+      const response = await fetch("https://book-charm-backend.onrender.com/api/log-in", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -49,12 +48,12 @@ const LogIn = () => {
         const data = await response.json();
         console.log(data);
 
-        // Store data in localStorage
+       
         dispatch(authActions.login());
         dispatch(authActions.changeRole(data.role));
-        localStorage.setItem("id", data.id); // Use data.id from backend
-        localStorage.setItem("token", data.token); // Use data.token from backend
-        localStorage.setItem("role", data.role); // Use data.role from backend
+        localStorage.setItem("id", data.id); 
+        localStorage.setItem("token", data.token); 
+        localStorage.setItem("role", data.role); 
         navigate("/");
 
       } else {
@@ -84,7 +83,7 @@ const LogIn = () => {
               value={Values.username}
               onChange={change}
             />
-            {/* Username Error */}
+          
             {errors.username && (
               <p className="text-red-600 text-sm mt-1">{errors.username}</p>
             )}
@@ -92,19 +91,19 @@ const LogIn = () => {
           <div className="mt-8">
             <label>Password</label>
             <input
-              type="password" // Change type to "password"
+              type="password" 
               className="w-full mt-2 bg-amber-100 text-amber-950 p-2 border-2 border-gray-500 outline-amber-800 outline-offset-2"
               placeholder="password"
               name="password"
               value={Values.password}
               onChange={change}
             />
-            {/* Password Error */}
+           
             {errors.password && (
               <p className="text-red-600 text-sm mt-1">{errors.password}</p>
             )}
           </div>
-          {/* Server Error */}
+         
           {errors.server && (
             <p className="text-red-600 text-sm mt-4 text-center">
               {errors.server}

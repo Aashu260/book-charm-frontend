@@ -5,10 +5,11 @@ const AllBooks = () => {
   const [Data, setData] = useState([]);
 
   useEffect(() => {
+    // fetch book data from backend api
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://book-charm-backend.onrender.com/api/v1/get-all-books"
+          "https://book-charm-backend.onrender.com/api/get-all-books"
         );
         const result = await response.json();
         console.log(result.data);

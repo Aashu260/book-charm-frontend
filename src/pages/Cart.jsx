@@ -18,7 +18,7 @@ const Cart = () => {
     const fetchCart = async () => {
       try {
         const response = await fetch(
-          "https://book-charm-backend.onrender.com/api/v1/get-user-cart",
+          "https://book-charm-backend.onrender.com/api/get-user-cart",
           {
             method: "GET",
             headers: {
@@ -46,6 +46,7 @@ const Cart = () => {
     fetchCart();
   }, []);
 
+  // increase item quantity
   const increaseQuantity = (bookid) => {
     setQuantities((prev) => ({
       ...prev,
@@ -53,6 +54,7 @@ const Cart = () => {
     }));
   };
 
+  // decrease item quantity
   const decreaseQuantity = (bookid) => {
     setQuantities((prev) => ({
       ...prev,
@@ -60,10 +62,11 @@ const Cart = () => {
     }));
   };
 
+  // delete item from cart
   const deleteItem = async (bookid) => {
     try {
       const response = await fetch(
-        `https://book-charm-backend.onrender.com/api/v1/remove-from-cart/${bookid}`,
+        `https://book-charm-backend.onrender.com/api/remove-from-cart/${bookid}`,
         {
           method: "PUT",
           headers: {
@@ -81,6 +84,7 @@ const Cart = () => {
     }
   };
 
+  // calculate total price
   useEffect(() => {
     if (Cart.length > 0) {
       let total = 0;
@@ -96,6 +100,7 @@ const Cart = () => {
       {!Cart && (
         <p className="text-center text-2xl text-amber-950">Loading...</p>
       )}
+      {/* empty cart message */}
       {Cart && Cart.length === 0 && (
         <div className="flex-grow flex items-center justify-center flex-col">
           <h1 className="sm:text-5xl lg:text-4xl font-semibold text-amber-950">

@@ -8,7 +8,7 @@ const RecentlyAdded = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://book-charm-backend.onrender.com/api/v1/get-recent-books"
+          "https://book-charm-backend.onrender.com/api/get-recent-books"
         );
 
         if (!response.ok) {

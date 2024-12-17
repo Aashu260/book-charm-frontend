@@ -59,7 +59,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await fetch("https://book-charm-backend.onrender.com/api/v1/sign-up", {
+      const response = await fetch("https://book-charm-backend.onrender.com/api/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

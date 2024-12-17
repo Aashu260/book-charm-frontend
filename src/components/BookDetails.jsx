@@ -17,7 +17,7 @@ const BookDetails = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://book-charm-backend.onrender.com/api/v1/get-book-by-id/${id}`
+          `https://book-charm-backend.onrender.com/api/get-book-by-id/${id}`
         );
         const result = await response.json();
         setData(result.data);
@@ -35,9 +35,10 @@ const BookDetails = () => {
   };
 
   const submitCart = async () => {
+    // add book to user cart
     try {
       const response = await fetch(
-        "https://book-charm-backend.onrender.com/api/v1/add-to-cart",
+        "https://book-charm-backend.onrender.com/api/add-to-cart",
         {
           method: "PUT",
           headers: {
@@ -71,6 +72,7 @@ const BookDetails = () => {
     <>
       {Data ? (
         <div className="px-8 md:px-12 py-20 bg-amber-100 flex flex-col md:flex-row gap-8">
+          {/* book image */}
           <div className="bg-amber-100 rounded p-4 w-full lg:w-3/6 flex flex-col items-center justify-center gap-8">
             <img
               src={Data.url}
@@ -78,6 +80,7 @@ const BookDetails = () => {
               className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-2xl h-auto rounded shadow shadow-black/50"
             />
           </div>
+          {/* book details */}
           <div className="p-4 w-full lg:w-3/6">
             <h1 className="text-4xl text-amber-950 font-semibold">
               {Data.title}
@@ -85,11 +88,13 @@ const BookDetails = () => {
             <p className="text-amber-950 mt-4">by {Data.author}</p>
             <p className="text-amber-950 mt-8 text-xl">{Data.desc}</p>
 
+            {/* book price */}
             <div className="mt-10 flex items-center gap-4 relative">
               <p className="text-amber-950 text-3xl font-semibold">
                 ${Data.price}
               </p>
 
+              {/* add to card */}
               {isLoggedIn === true && role === "user" && (
                 <div className="flex items-center gap-2">
                   <button
@@ -103,6 +108,7 @@ const BookDetails = () => {
                 </div>
               )}
 
+              {/* admin role */}
               {isLoggedIn === true && role === "admin" && (
                 <div className="flex items-center gap-4">
                   <button className="text-amber-950 hover:text-green-600 hover:scale-110 transition-transform ml-10">
